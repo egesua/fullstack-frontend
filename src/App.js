@@ -1,13 +1,21 @@
-import './App.css';
+import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Navbar from './components/layout/Navbar';
-import Home from './components/pages/Home';
+import Navbar from "./components/layout/Navbar";
+import Home from "./components/pages/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddUser from "./components/users/AddUser";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Home />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/addUser" element={<AddUser />} />
+        </Routes>
+        <Home />
+      </Router>
     </div>
   );
 }
