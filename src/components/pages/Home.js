@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Home = () => {
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    console.log("egesua.")
+  },[])
+
   return (
     <div className="container">
       <div className="py-4">
