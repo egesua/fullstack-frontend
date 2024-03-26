@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const AddUser = () => {
   return (
@@ -14,13 +14,36 @@ const AddUser = () => {
               type={"text"}
               className="form-control"
               placeholder="Enter your name"
-              name="name">
-            </input>
+              name="name"
+            ></input>
           </div>
+          <div className="mb-3">
+            <label htmlFor="Username" className="form-label">
+              Username
+            </label>
+            <input
+              type={"text"}
+              className="form-control"
+              placeholder="Enter your Username"
+              name="username"
+            ></input>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="Email" className="form-label">
+              Email
+            </label>
+            <input
+              type={"text"}
+              className="form-control"
+              placeholder="Enter your email address"
+              name="email"
+            ></input>
+          </div>
+          <button type="submit" className="btn btn-outline-primary">Submit</button>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default AddUser;
