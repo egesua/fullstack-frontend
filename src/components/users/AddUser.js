@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 const AddUser = () => {
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    email: "",
+  });
+
+  const { name, username, email } = user;
+
+  const onInputChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -15,6 +27,8 @@ const AddUser = () => {
               className="form-control"
               placeholder="Enter your name"
               name="name"
+              value={name}
+              onChange={(e) => onInputChange(e)}
             ></input>
           </div>
           <div className="mb-3">
@@ -26,6 +40,8 @@ const AddUser = () => {
               className="form-control"
               placeholder="Enter your Username"
               name="username"
+              value={username}
+              onChange={(e) => onInputChange(e)}
             ></input>
           </div>
           <div className="mb-3">
@@ -37,9 +53,16 @@ const AddUser = () => {
               className="form-control"
               placeholder="Enter your email address"
               name="email"
+              value={email}
+              onChange={(e) => onInputChange(e)}
             ></input>
           </div>
-          <button type="submit" className="btn btn-outline-primary">Submit</button>
+          <button type="submit" className="btn btn-outline-danger">
+            Cancel
+          </button>
+          <button type="submit" className="btn btn-outline-primary mx-2">
+            Submit
+          </button>
         </div>
       </div>
     </div>
