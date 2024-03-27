@@ -1,63 +1,55 @@
-import React from "react"
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const ViewUser = () => {
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    email: "",
+  });
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:8585/user/${id}`);
+    setUser(result.data);
+  };
+
   return (
-<div className="container">
+    <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4"> Register User</h2>
-
-          <form onSubmit={(e) => onSubmit(e)}>
-          <div className="mb-3">
-            <label htmlFor="Name" className="form-label">
-              Name
-            </label>
-            <input
-              type={"text"}
-              className="form-control"
-              placeholder="Enter your name"
-              name="name"
-              value={name}
-              onChange={(e) => onInputChange(e)}
-            ></input>
+          <div className="card">
+            <div className="card-header">
+              Details of user :
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item">
+                  <b>Name:</b>
+                  {user.name}
+                </li>
+                <li className="list-group-item">
+                  <b>Username:</b>
+                  {user.username}
+                </li>
+                <li className="list-group-item">
+                  <b>Email:</b>
+                  {user.email}
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="mb-3">
-            <label htmlFor="Username" className="form-label">
-              Username
-            </label>
-            <input
-              type={"text"}
-              className="form-control"
-              placeholder="Enter your Username"
-              name="username"
-              value={username}
-              onChange={(e) => onInputChange(e)}
-            ></input>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="Email" className="form-label">
-              Email
-            </label>
-            <input
-              type={"text"}
-              className="form-control"
-              placeholder="Enter your email address"
-              name="email"
-              value={email}
-              onChange={(e) => onInputChange(e)}
-            ></input>
-          </div>
-          <Link className="btn btn-outline-danger" to="/">
-            Cancel
+          <Link className="btn btn-primary my-2" to={"/"}>
+            Back to Home
           </Link>
-          <button type="submit" className="btn btn-outline-primary mx-2">
-            Submit
-          </button>
-          </form>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ViewUser;
